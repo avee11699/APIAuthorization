@@ -1,0 +1,110 @@
+﻿@page
+@model APIAuthorization.DetailsModel
+
+<br />
+<h2 class="text-info">Details</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.id"></label>
+            </div>
+            <div class="col-6">
+                <input type="show" asp-for="PaymentDetails.id" readonly class=" form-control" />
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.purchase_type"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.purchase_type" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.purchase_identifier"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.purchase_identifier" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <b>
+                    <label asp-for="Payment_facilitator_details"></label>
+                </b>
+            </div>
+            @*<div class="col-6">
+                <input asp-for="PaymentDetails.payment_facilitator_details" class="form-control" />
+            </div>
+            <span asp-validation-for="PaymentDetails.payment_facilitator_details" class="text-danger"></span>*@
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.Payment_facilitator_details.payment_facilitator_id"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.Payment_facilitator_details.payment_facilitator_id" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.Payment_facilitator_details.marketplace_id"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.Payment_facilitator_details.marketplace_id" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.Payment_facilitator_details.sponsor_merchant_id"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.Payment_facilitator_details.sponsor_merchant_id" readonly class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.created_date"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.created_date" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.modified_date"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="PaymentDetails.modified_date" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Back To List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
