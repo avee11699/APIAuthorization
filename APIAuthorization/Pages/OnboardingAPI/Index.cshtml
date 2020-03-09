@@ -8,16 +8,19 @@
     </div>
     
     <div class=" col-4">
-        <form asp-controller="AuthSettingController" asp-action="Index" method="get">
+        <form asp-controller="Index" asp-action="Index" method="get">
             <p>
-                Enter KEY: <input type="text" name="SearchString" />
+               
+                Enter KEY: <input type="text" name="KEY" id="keysrch" />
                 <input type="submit" value="Search" />
+
+
             </p>
         </form>
     </div>
    
     <div class="col-3">
-        <a asp-page="Create" class="btn btn-info form-control text-white">Create New API</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">Create New Merchant</a>
 
     </div>
 

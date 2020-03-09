@@ -1,0 +1,96 @@
+﻿@page
+@model APIAuthorization.MC_IndexModel
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Authorization List</h2>
+    </div>
+
+    <div class=" col-4">
+        <form asp-controller="MC_Index" asp-action="MC_Index" method="get">
+            <p>
+
+                Enter KEY: <input type="text" name="KEY" id="keysrch" />
+                <input type="submit" value="Search" />
+
+
+            </p>
+        </form>
+    </div>
+
+    <div class="col-3">
+        <a asp-page="MC_Create" class="btn btn-info form-control text-white">Add New Merchant</a>
+
+    </div>
+
+    <div class="col-12 p-1 mt-1">
+        <form method="post">
+            @if (Model.MC_AuthSettings.Count() > 0)
+            {
+                <table class="col-12 table table-striped border">
+                    <tr class="table-secondary">
+                        <th class="col-4">
+                            <label asp-for="MC_AuthSettings.FirstOrDefault().KEY"></label>
+                        </th>
+                        <th class="col-8">
+                            <label asp-for="MC_AuthSettings.FirstOrDefault().VALUE"></label>
+                        </th>
+                        <th class="col-8">
+                            &nbsp;
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.MC_AuthSettings)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.KEY)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.VALUE)
+                            </td>
+                            @{
+                                var parms = new Dictionary<string, string>
+                                            {
+                                    { "KEY", item.KEY.ToString() }
+                                };
+                            }
+                            <td>
+                                <a asp-page="MC_Edit" asp-route-id="@item.KEY" class="btn btn-success btn-sm text-white">Edit</a>
+                                <a asp-page="MC_Details" asp-route-id="@item.KEY" class="btn btn-info btn-sm text-white">Details</a>
+                                <button asp-page-handler="Delete" asp-all-route-data="parms" onclick="return confirm('Are you sure you want to delete the API?')" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No API available</p>
+            }
+        </form>
+    </div>
+
+    @*<div class="col-12" style="text-align:center">
+            <br />
+            <span class="h3 text-info">OR</span>
+            <br /><br />
+        </div>
+        <div class="col-12 border p-3">
+
+            <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>KEY</th>
+                        <th> VALUE</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>*@
+</div>
+
+@section Scripts{
+    <script src="~/js/MC_AuthSetting.js"></script>
+}
+

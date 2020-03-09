@@ -11,10 +11,10 @@ namespace APIAuthorization.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthSettingController : ControllerBase
+    public class VISA_AuthSettingController : ControllerBase
     {
         private AuthSettingContext _authSettingContext;
-        public AuthSettingController(AuthSettingContext authSettingContext)
+        public VISA_AuthSettingController(AuthSettingContext authSettingContext)
         {
             _authSettingContext = authSettingContext;
         }

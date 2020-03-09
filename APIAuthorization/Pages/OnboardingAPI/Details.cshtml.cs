@@ -29,7 +29,7 @@ namespace APIAuthorization
         {
             //PaymentDetails = JsonConverter.DeserializeObject<PaymentDetails>(authsetting.VALUE);
             //return PaymentDetails;
-
+            ViewData["PaymentDetailsId"] = id;
             var authSetting = await _db.AuthorizationSettings.FindAsync(id);
 
             Payment_facilitator_details = JsonConvert.DeserializeObject<Payment_facilitator_details>(authSetting.VALUE);

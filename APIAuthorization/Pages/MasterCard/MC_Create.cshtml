@@ -1,0 +1,177 @@
+﻿@page
+@model APIAuthorization.MC_CreateModel
+
+<br />
+<h2 class="text-info">Create New Merchant</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        @*<input type="hidden" asp-for="MC_PaymentDetails.id" class="form-control" />*@
+
+        @*<div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.id"></label>
+            </div>
+            <div class="col-6">
+                <input type="hidden" asp-for="PaymentDetails.id" class="form-control" />
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.PaymentIdentifier"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.PaymentIdentifier" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.PaymentIdentifier" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.PaymentFacilitatorId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.PaymentFacilitatorId" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.PaymentFacilitatorId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.SubMerchantId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.SubMerchantId" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.SubMerchantId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.IndependantSalesOrgId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.IndependantSalesOrgId" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.IndependantSalesOrgId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.SponsorMerchantId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.SponsorMerchantId" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.SponsorMerchantId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.MarketplaceId"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.MarketplaceId" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.MarketplaceId" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group row">
+            <div class="col-3">
+                <b>
+                    <label asp-for="MC_PaymentDetails.PaymentTransactionType"></label>
+                </b>
+            </div>
+            @*<div class="col-6">
+                <input asp-for="PaymentDetails.payment_facilitator_details" class="form-control" />
+            </div>
+            <span asp-validation-for="PaymentDetails.payment_facilitator_details" class="text-danger"></span>*@
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.PaymentTransactionType.Indicator"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.PaymentTransactionType.Indicator" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.PaymentTransactionType.Indicator" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.PaymentTransactionType.MerchantCategoryCode"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.PaymentTransactionType.MerchantCategoryCode" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.PaymentTransactionType.MerchantCategoryCode" class="text-danger"></span>
+        </div>
+
+
+
+
+        <div class="form-group row">
+            <div class="col-3">
+                <b>
+                    <label asp-for="MC_PaymentDetails.aft"></label>
+                </b>
+            </div>
+            @*<div class="col-6">
+                <input asp-for="PaymentDetails.payment_facilitator_details" class="form-control" />
+            </div>
+            <span asp-validation-for="PaymentDetails.payment_facilitator_details" class="text-danger"></span>*@
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.aft.PaymentTransactionType"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.aft.PaymentTransactionType" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.aft.PaymentTransactionType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.aft.MerchantCategoryCode"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.aft.MerchantCategoryCode" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.aft.MerchantCategoryCode" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="MC_PaymentDetails.aft.MerchantName"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="MC_PaymentDetails.aft.MerchantName" class="form-control" />
+            </div>
+            <span asp-validation-for="MC_PaymentDetails.aft.MerchantName" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Add" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="index" class="btn btn-success form-control">back to list</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

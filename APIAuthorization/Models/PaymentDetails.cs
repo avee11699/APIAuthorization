@@ -16,18 +16,24 @@ namespace APIAuthorization.Models
         [Required]
         [DisplayName("Account Active")]
         public Boolean is_active { get; set; }
-
+        
+        [Required]
         [DisplayName("Purchase Type")]
         public string purchase_type { get; set; }
 
+        [Required]
         [DisplayName("Purchase Identifier")]
         public string purchase_identifier { get; set; }
+
         
         [DisplayName("Payment Facilitator Details")]
         public Payment_facilitator_details Payment_facilitator_details { get; set; }
+
         
         [DisplayName("Created Date")]
         public string created_date { get; set; }
+
+        
         [DisplayName("Modified Date")]
         public string modified_date { get; set; }
         

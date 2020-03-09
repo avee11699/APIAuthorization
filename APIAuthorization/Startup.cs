@@ -26,6 +26,7 @@ namespace APIAuthorization
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
+            services.AddDbContext<MC_AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }

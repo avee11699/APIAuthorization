@@ -7,6 +7,7 @@ using APIAuthorization.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Primitives;
 
 namespace APIAuthorization
 {
@@ -22,6 +23,17 @@ namespace APIAuthorization
 
         public async Task OnGet()
         {
+            var keySearch = new StringValues();
+
+            Request.Query.TryGetValue("KEY",out keySearch);
+
+            if (keySearch.Count>0 && !string.IsNullOrEmpty(keySearch.ToString()))
+            {
+                var authSettingsDB = (from authsettingtbl in _db.AuthorizationSettings.Where(x => x.KEY == Guid.Parse(keySearch.ToString()))
+                              select authsettingtbl).AsEnumerable();
+                AuthSettings = authSettingsDB;
+            }
+            else
             AuthSettings = await _db.AuthorizationSettings.ToListAsync();
 
         }
@@ -38,18 +50,6 @@ namespace APIAuthorization
 
             return RedirectToPage("Index");
         }
-        //public async Task<IActionResult> onGet(Guid KEY)
-        //{
-        //    var movies = from KEY in PaymentDetails
-        //                 select KEY;
 
-        //    if (!Guid.IsNullOrEmpty(KEY))
-        //    {
-        //        movies = movies.Where(s => s.VALUE.Contains(KEY));
-        //    }
-
-        //    return View(await movies.ToListAsync());
-        //}
-        
     }
 }
