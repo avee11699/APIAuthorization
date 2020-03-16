@@ -1,0 +1,65 @@
+﻿@page
+@model APIAuthorization.UserLoginModel
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <img src="https://ok7static.oktacdn.com/fs/bco/1/fs0k214ljlmt019gI356" class="auth-org-logo" alt="Checkout.com logo">
+    </div>
+
+    <br />
+        <h2 class="text-info">Sign In</h2>
+    <br />
+</div>
+
+<div class="border container" style="padding:15px;">
+    <form method="post" class="col-12">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        @*<input type="hidden" asp-for="MC_PaymentDetails.id" class="form-control" />*@
+
+        @*<div class="form-group row">
+            <div class="col-3">
+                <label asp-for="PaymentDetails.id"></label>
+            </div>
+            <div class="col-6">
+                <input type="hidden" asp-for="PaymentDetails.id" class="form-control" />
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            </div>
+        </div>*@
+
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Username"></label>
+        </div>
+        <div class="col-4">
+            <input asp-for="Username" class="form-control" />
+        </div>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Password"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-3">
+                <input type="submit" value="Sign in" class="btn btn-primary form-control" />
+            </div>
+            
+            <div class="col-3">
+                <a asp-page="index" class="btn btn-success form-control">Register</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
