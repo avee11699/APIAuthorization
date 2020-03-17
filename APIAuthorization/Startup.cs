@@ -30,6 +30,11 @@ namespace APIAuthorization
             services.AddDbContext<User_LoginContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            //services.AddMvc().AddRazorPagesOptions(options =>
+            //{
+            //    options.Conventions.AddPageRoute("/api/UserLogin", "");
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

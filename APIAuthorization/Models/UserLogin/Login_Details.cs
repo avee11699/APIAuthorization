@@ -9,6 +9,7 @@ namespace APIAuthorization.Models.UserLogin
     public class Login_Details
     {
         [Required]
+        [Key]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }

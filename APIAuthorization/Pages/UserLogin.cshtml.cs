@@ -24,7 +24,7 @@ namespace APIAuthorization
         [Required]
         [BindProperty]
         public string Password { get; set; }
-        public void OnGet()
+        public async Task  OnGet(string Username, string Password)
         {
 
         }
@@ -33,8 +33,23 @@ namespace APIAuthorization
         {
             if (!string.IsNullOrEmpty(Username)&& !string.IsNullOrEmpty(Password))
             {
+
+                var userLogin = await _db.UserLogin.FindAsync(Username);
+
+                if (userLogin != null && Password==userLogin.Password)
+                {
+                    return RedirectToPage("/MasterCard/MC_Index");
+
+                }
+
+                //TODO: Exception for login fail 
+
+                //{
+                //    Username = Username,
+                //    Password = Password
+                //};
                 //var key = Guid.NewGuid();
-               
+
                 //var AuthSettings = new MC_AuthSetting
                 //{
                 //    KEY = key,
@@ -42,7 +57,8 @@ namespace APIAuthorization
                 //};
                 //await _db.MasterCard_AuthorizationSettings.AddAsync(AuthSettings);
                 //await _db.SaveChangesAsync();
-                return RedirectToPage("/MasterCard/MC_Index");
+                return RedirectToPage("UserLogin");
+
             }
             else
             {
