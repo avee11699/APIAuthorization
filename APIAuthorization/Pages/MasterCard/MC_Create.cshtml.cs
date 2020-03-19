@@ -14,7 +14,7 @@ namespace APIAuthorization
     public class MC_CreateModel : PageModel
     {
         private readonly MC_AuthSettingContext _db;
-
+         
         public MC_CreateModel(MC_AuthSettingContext db)
         {
             _db = db;

@@ -27,8 +27,14 @@ namespace APIAuthorization
         {
             services.AddDbContext<AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
             services.AddDbContext<MC_AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
+            services.AddDbContext<User_LoginContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            //services.AddMvc().AddRazorPagesOptions(options =>
+            //{
+            //    options.Conventions.AddPageRoute("/api/UserLogin", "");
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +56,15 @@ namespace APIAuthorization
 
             app.UseRouting();
 
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //name: "Default",
+                //pattern: "{controller=default}/{action=Index}/{id?}");
+
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
