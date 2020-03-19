@@ -18,7 +18,12 @@ namespace APIAuthorization
         {
             _db = db;
         }
+        [BindProperty(SupportsGet =true)]
 
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 30;
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
         public IEnumerable<authsetting>AuthSettings { get; set; }
 
         public async Task OnGet()
@@ -29,13 +34,26 @@ namespace APIAuthorization
 
             if (keySearch.Count>0 && !string.IsNullOrEmpty(keySearch.ToString()))
             {
-                var authSettingsDB = (from authsettingtbl in _db.AuthorizationSettings.Where(x => x.KEY == Guid.Parse(keySearch.ToString()))
-                              select authsettingtbl).AsEnumerable();
-                AuthSettings = authSettingsDB;
+                Guid guidVal;
+                Guid.TryParse(keySearch.ToString(), out guidVal);
+                if(guidVal!=new Guid())
+                {
+                    var authSettingsDB = (from authsettingtbl in _db.AuthorizationSettings.Where(x => x.KEY == Guid.Parse(keySearch.ToString()))
+                                          select authsettingtbl).AsEnumerable();
+                    AuthSettings = authSettingsDB;
+                }
+                else
+                {
+                    var authSettingsDB = (from authsettingtbl in _db.AuthorizationSettings.Where(x => x.VALUE.Contains(keySearch.ToString()))
+                                          select authsettingtbl).AsEnumerable();
+                    AuthSettings = authSettingsDB;
+                }
+               
             }
             else
             AuthSettings = await _db.AuthorizationSettings.ToListAsync();
-
+            Count = AuthSettings.Count(); 
+            AuthSettings = AuthSettings.OrderBy(x => x.KEY).Skip((CurrentPage - 1) * PageSize).Take(PageSize).AsEnumerable();
         }
 
         public async Task<IActionResult> OnPostDelete(Guid KEY)

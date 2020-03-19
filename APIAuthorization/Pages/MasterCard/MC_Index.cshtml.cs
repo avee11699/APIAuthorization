@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using APIAuthorization.Data;
+using APIAuthorization.Models;
 using APIAuthorization.Models.MasterCard;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,6 +20,14 @@ namespace APIAuthorization
             _db = db;
         }
 
+        [BindProperty(SupportsGet = true)]
+
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 3;
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+        public IEnumerable<authsetting> AuthSettings { get; set; }
+
         public IEnumerable<MC_AuthSetting> MC_AuthSettings { get; set; }
 
         public async Task OnGet()
@@ -29,12 +38,27 @@ namespace APIAuthorization
 
             if (keySearch.Count > 0 && !string.IsNullOrEmpty(keySearch.ToString()))
             {
-                var authSettingsDB = (from authsettingtbl in _db.MasterCard_AuthorizationSettings.Where(x => x.KEY == Guid.Parse(keySearch.ToString()))
-                                      select authsettingtbl).AsEnumerable();
-                MC_AuthSettings = authSettingsDB;
+                Guid guidVal;
+                Guid.TryParse(keySearch.ToString(), out guidVal);
+                if (guidVal != new Guid())
+                {
+                    var authSettingsDB = (from authsettingtbl in _db.MasterCard_AuthorizationSettings.Where(x => x.KEY == Guid.Parse(keySearch.ToString()))
+                                          select authsettingtbl).AsEnumerable();
+                    MC_AuthSettings = authSettingsDB;
+                }
+                else
+                {
+                    var authsettingsDB = (from authsettingtbl in _db.MasterCard_AuthorizationSettings.Where(x => x.VALUE.Contains(keySearch.ToString()))
+                                          select authsettingtbl).AsEnumerable();
+                    MC_AuthSettings = authsettingsDB;
+
+                }
+                    
             }
             else
                 MC_AuthSettings = await _db.MasterCard_AuthorizationSettings.ToListAsync();
+                Count = MC_AuthSettings.Count();
+            MC_AuthSettings = MC_AuthSettings.OrderBy(x => x.KEY).Skip((CurrentPage - 1) * PageSize).Take(PageSize).AsEnumerable();
 
         }
 
