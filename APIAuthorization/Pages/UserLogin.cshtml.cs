@@ -18,7 +18,7 @@ namespace APIAuthorization
         {
             _db = db;
         }
-
+        [Required]
         [BindProperty]
         public string Username { get; set; }
         [Required]
@@ -38,25 +38,20 @@ namespace APIAuthorization
 
                 if (userLogin != null && Password==userLogin.Password)
                 {
+                    //if (Session["UserName"] != null)
+                    //{
+                    //    tbUserName.Text = Session["UserName"].ToString();
+                    //}
+                    //if (Session["Pwd"] != null)
+                    //{
+                    //    tbpwd.Text = Session["Pwd"].ToString();
+                    //}
                     return RedirectToPage("/MasterCard/MC_Index");
 
                 }
 
                 //TODO: Exception for login fail 
 
-                //{
-                //    Username = Username,
-                //    Password = Password
-                //};
-                //var key = Guid.NewGuid();
-
-                //var AuthSettings = new MC_AuthSetting
-                //{
-                //    KEY = key,
-                //    VALUE = JsonConvert.SerializeObject(MC_PaymentDetails)
-                //};
-                //await _db.MasterCard_AuthorizationSettings.AddAsync(AuthSettings);
-                //await _db.SaveChangesAsync();
                 return RedirectToPage("UserLogin");
 
             }
@@ -66,4 +61,5 @@ namespace APIAuthorization
             }
         }
     }
+    
 }

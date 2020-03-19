@@ -61,9 +61,9 @@ namespace APIAuthorization
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                name: "Default",
-                pattern: "{controller=default}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //name: "Default",
+                //pattern: "{controller=default}/{action=Index}/{id?}");
 
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
