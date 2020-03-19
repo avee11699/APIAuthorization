@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using APIAuthorization.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +20,8 @@ namespace APIAuthorization
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
-            services.AddDbContext<MC_AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU005\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
+            services.AddDbContext<AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU066\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
+            services.AddDbContext<MC_AuthSettingContext>(option => option.UseSqlServer(@"Data Source=LPCKOMU066\SQLEXPRESS;Initial Catalog=CP;Integrated Security = true"));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
