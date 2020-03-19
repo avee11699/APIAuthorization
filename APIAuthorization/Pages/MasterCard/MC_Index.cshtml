@@ -46,7 +46,7 @@
                             </td>
                             @{
                                 var parms = new Dictionary<string, string>
-                                            {
+                                                        {
                                     { "KEY", item.KEY.ToString() }
                                 };
                             }
@@ -65,25 +65,19 @@
             }
         </form>
     </div>
+    <div>
+        <ul class="pagination">
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
 
-    @*<div class="col-12" style="text-align:center">
-            <br />
-            <span class="h3 text-info">OR</span>
-            <br /><br />
-        </div>
-        <div class="col-12 border p-3">
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a asp-page="/MasterCard/MC_Index" asp-route-currentpage="@i" class="page-link">@i</a>
+                </li>
+            }
+        </ul>
+        Page @Model.CurrentPage of @Model.TotalPages
+    </div>
 
-            <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>KEY</th>
-                        <th> VALUE</th>
-
-                        <th></th>
-                    </tr>
-                </thead>
-            </table>
-        </div>*@
 </div>
 
 @section Scripts{
